@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfacefulljavafx.PageAccueilController">
+   <top>
+      <Label fx:id="label_Name" text="XXXXXXXX_Name" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+   </top>
+   <left>
+      <GridPane prefHeight="378.0" prefWidth="342.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="10.0" prefWidth="315.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="0.0" prefWidth="27.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="121.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="244.0" minHeight="4.0" prefHeight="53.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="318.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="labelLongueurCheveux" prefHeight="14.0" prefWidth="136.0" text="Longueur Cheveux: ">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="-25.0" />
+               </padding>
+            </Label>
+            <Label fx:id="labelTypeBouche" text="Type de Bouche:" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelDetailPersonnage" text="Détails" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="15.0" top="-250.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+               <padding>
+                  <Insets top="25.0" />
+               </padding>
+            </Label>
+            <ComboBox fx:id="comboTypeBouche" onAction="#dessinerBouche" prefHeight="25.0" prefWidth="210.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="-180.0" />
+               </GridPane.margin>
+            </ComboBox>
+            <TextArea fx:id="details" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="340.0" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </TextArea>
+            <RadioButton fx:id="radioLong" mnemonicParsing="false" onAction="#dessinerChevLong" text="Long">
+               <GridPane.margin>
+                  <Insets left="90.0" top="35.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="radioCourt" mnemonicParsing="false" onAction="#dessinerChevCourt" text="Court">
+               <GridPane.margin>
+                  <Insets left="15.0" top="35.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="radioMoyen" mnemonicParsing="false" onAction="#dessinerChevMoyen" text="Moyen">
+               <GridPane.margin>
+                  <Insets left="160.0" top="35.0" />
+               </GridPane.margin>
+            </RadioButton>
+         </children>
+      </GridPane>
+   </left>
+   <right>
+      <GridPane fx:id="avatar" prefHeight="378.0" prefWidth="219.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Canvas fx:id="canvas" height="200.0" width="409.0" />
+         </children>
+      </GridPane>
+   </right>
+</BorderPane>
