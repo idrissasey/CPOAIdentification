@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -34,7 +35,7 @@ import javafx.scene.shape.ArcType;
  */
 public class PageAccueilController implements Initializable {
     
-    ContexteAvatar contexte;
+    ContexteMenu contexte;
     @FXML
     private Label label_Name;
     @FXML
@@ -57,6 +58,23 @@ public class PageAccueilController implements Initializable {
     private GridPane avatar;
     @FXML
     private Canvas canvas;
+    @FXML
+    private Button effacer;
+
+    @FXML
+    private void effacerCanvas(ActionEvent event) {
+        GraphicsContext gt = canvas.getGraphicsContext2D();
+        gt.clearRect(0, 0, 300, 200);
+    }
+
+    @FXML
+    private void dessinerTete(ActionEvent event) {
+        GraphicsContext gt = canvas.getGraphicsContext2D();
+               this.drawHead(gt);
+        this.drawEyes(gt);
+        this.drawEyes2(gt);
+        this.drawNose(gt);
+    }
     
    
     
@@ -177,7 +195,8 @@ public class PageAccueilController implements Initializable {
        
           gc.setLineWidth(5);
         gc.setStroke(Color.BLUE);
-       gc.strokeLine(4, 4, 40, 20);
+     //  gc.strokeLine(4, 4, 40, 20);
+          gc.fillArc(10, 0, 150, 50, 25, 195, ArcType.OPEN);
     
       // gc.fillOval(10, 60, 30, 30);
        
@@ -188,7 +207,8 @@ public class PageAccueilController implements Initializable {
        
           gc.setLineWidth(5);
         gc.setStroke(Color.BLUE);
-       gc.strokeLine(40, 40, 0, 20);
+          gc.fillArc(10, 0, 150, 50, 25, 100, ArcType.OPEN);
+       
     
       // gc.fillOval(10, 60, 30, 30);
        
@@ -199,7 +219,7 @@ public class PageAccueilController implements Initializable {
        
           gc.setLineWidth(5);
         gc.setStroke(Color.BLUE);
-       gc.strokeLine(4, 4, 20, 20);
+       gc.fillArc(10, 0, 150, 50, 25, 150, ArcType.OPEN);
     
       // gc.fillOval(10, 60, 30, 30);
        
@@ -250,7 +270,6 @@ public class PageAccueilController implements Initializable {
     private void dessinerChevLong(ActionEvent event) {
         this.radioCourt.setSelected(false);
         this.radioMoyen.setSelected(false);
-        System.out.println("cheveux long");
         GraphicsContext gt = canvas.getGraphicsContext2D();
         this.drawHairLong(gt);
     }
@@ -259,23 +278,19 @@ public class PageAccueilController implements Initializable {
     private void dessinerChevCourt(ActionEvent event) {
         this.radioLong.setSelected(false);
         this.radioMoyen.setSelected(false);
-        System.out.println("cheveux court");
         GraphicsContext gt = canvas.getGraphicsContext2D();
         this.drawHairCourt(gt);
     }
 
     @FXML
     private void dessinerChevMoyen(ActionEvent event) {
-         this.radioCourt.setSelected(false);
+        this.radioCourt.setSelected(false);
         this.radioLong.setSelected(false);
         System.out.println("cheveux moyen");
-       GraphicsContext gt = canvas.getGraphicsContext2D();
+        GraphicsContext gt = canvas.getGraphicsContext2D();
         this.drawHairMoyen(gt);
     }
 
-    @FXML
-    private void dessinerCanvas(MouseEvent event) {
-    }
 
 
     private static ObservableList comboItem ;  
@@ -285,11 +300,14 @@ public class PageAccueilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         List<String> comboBouche = new ArrayList<>();
-         GraphicsContext gt = canvas.getGraphicsContext2D();
+        GraphicsContext gt = canvas.getGraphicsContext2D();
         this.drawHead(gt);
         this.drawEyes(gt);
         this.drawEyes2(gt);
         this.drawNose(gt);
+        //souviens toi de cette ligne
+        //label_Name.setText( this.contexte.getPersonne().getNomVal());
+        
         
         comboBouche.add(typeBouche.CARRE.toString());
         comboBouche.add(typeBouche.OVALE.toString());
@@ -304,23 +322,24 @@ public class PageAccueilController implements Initializable {
     }
      
     
-    public void setContexte(ContexteAvatar context){
+    public void setContexte(ContexteMenu context){
         
         this.contexte = context;
-        context.getDetailsCoProperty().bind(details.textProperty());
-        context.getFormeBoucheCoProperty().bind(comboTypeBouche.promptTextProperty());
-      //  context.getLongueurChevCoProperty().bind();
+        
+        System.out.println(contexte.getPersonne().getNom());
+        contexte.getPersonne().getDetailsCoProperty().bindBidirectional(details.textProperty());
+        contexte.getPersonne().getFormeBoucheCoProperty().bindBidirectional(comboTypeBouche.promptTextProperty());
+       contexte.getPersonne().getLongueurChevCoProperty().bindBidirectional(this.radioCourt.textProperty());
+       contexte.getPersonne().getLongueurChevCoProperty().bindBidirectional(this.radioLong.textProperty());
+       contexte.getPersonne().getLongueurChevCoProperty().bindBidirectional(this.radioMoyen.textProperty());
+       label_Name.textProperty().bind(contexte.getPersonne().getNom());
+       this.radioMoyen.textProperty().bind(contexte.getPersonne().getLongueurChevCoProperty());
+       this.radioCourt.textProperty().bind(contexte.getPersonne().getLongueurChevCoProperty());
+       this.radioCourt.textProperty().bind(contexte.getPersonne().getLongueurChevCoProperty());
+       //this.comboTypeBouche.bind();
     }
     
-    public boolean isDigic(String c){
-        Pattern p = Pattern.compile("-?\\d+");
-        Matcher m = p.matcher(c);
-        if (m.find()) {
-             System.out.println(m.group());
-        }
-        return m.find();
-        
-    }
+
     
     
 }

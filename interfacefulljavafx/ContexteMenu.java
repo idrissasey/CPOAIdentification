@@ -11,7 +11,7 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Idrissa SI
  * Modele de données
  */
-public class ContexteAvatar {
+public class ContexteMenu {
     
     private Personne personne;
 
@@ -20,13 +20,13 @@ public class ContexteAvatar {
     /**
      * @return the longinUtilisateurCo
      */
-    public ContexteAvatar(Personne pers){
+    public ContexteMenu(Personne pers){
         this.personne = pers;
     
     }
     
     public Personne getPersonne(){
-       return personne;
+        return personne;
     }
     
     

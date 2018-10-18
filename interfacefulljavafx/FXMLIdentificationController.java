@@ -62,16 +62,20 @@ public class FXMLIdentificationController implements Initializable {
             try {
             Stage stage = (Stage) this.login.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("pageAccueil.fxml"));
+            loader.setLocation(getClass().getResource("FXMLMenu.fxml"));
             Parent root = loader.load();
-            PageAccueilController controleur =  loader.getController();
+            FXMLMenuController controleur =  loader.getController();
             //création d'un nouveau contexte 
-            ContexteAvatar contexte = new ContexteAvatar(p);
-            controleur.setContexte(contexte);
+            ContexteMenu contexteP = new ContexteMenu(p);
+            controleur.setContexte(contexteP);
             Scene scene = new Scene(root);
 
             stage.setScene(scene);
             stage.show();
+            
+         
+           
+            
             } catch (IOException e) {
                 Logger.getLogger(FXMLIdentificationController.class.getName()).log(Level.SEVERE, null,e);
             }

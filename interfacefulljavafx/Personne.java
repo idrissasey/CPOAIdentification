@@ -26,6 +26,10 @@ public class Personne {
     private StringProperty villeCP = new SimpleStringProperty();
     private StringProperty tel1 = new SimpleStringProperty();
     private StringProperty tel2 = new SimpleStringProperty();
+    private StringProperty longeurChev;
+    private StringProperty formeBouche;
+    private StringProperty details;
+    
     private  final ObjectProperty<LocalDate> derniereConnexion = new SimpleObjectProperty<>();
     
     
@@ -38,6 +42,10 @@ public class Personne {
         this.adresse2.set(adr2);
         this.tel1.set(pwd);
         this.tel2.set(pwd);
+
+        this.longeurChev = new SimpleStringProperty();
+        this.formeBouche = new SimpleStringProperty();
+        this.details = new SimpleStringProperty();
         
     }
     
@@ -105,6 +113,13 @@ public class Personne {
     public StringProperty getNom() {
         return nom;
     }
+    
+        /**
+     * @return the nom
+     */
+    public String getNomVal() {
+        return nom.get();
+    }
 
     /**
      * @param nom the nom to set
@@ -118,6 +133,13 @@ public class Personne {
      */
     public StringProperty getAdresse1() {
         return adresse1;
+    }
+    
+        /**
+     * @return the adresse1
+     */
+    public String getAdresse1Val() {
+        return adresse1.get();
     }
 
     /**
@@ -181,6 +203,34 @@ public class Personne {
      */
     public void setTel2(StringProperty tel2) {
         this.tel2 = tel2;
+    }
+    
+        /**
+     * @return the longinUtilisateurCo
+     */
+    public StringProperty getLongueurChevCoProperty() {
+        return longeurChev;
+    }
+    
+        /**
+     * @return the longinUtilisateurCo
+     */
+    public String getLongueurChevCo() {
+        return longeurChev.getValue();
+    }
+
+    /**
+     * @return the passwordnUtilisateurCo
+     */
+    public StringProperty getFormeBoucheCoProperty() {
+        return formeBouche;
+    }
+    
+        /**
+     * @return the passwordnUtilisateurCo
+     */
+    public StringProperty getDetailsCoProperty() {
+        return details;
     }
     
 }
